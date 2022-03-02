@@ -1,6 +1,6 @@
 <?php
 
-//basic class test
+//basic class
 class AchievementBadge
 {
     public $title;
