@@ -1,5 +1,6 @@
 <?php
 
+//basic class
 class AchievementBadge
 {
     public $title;
