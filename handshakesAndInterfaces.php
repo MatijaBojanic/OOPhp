@@ -1,9 +1,12 @@
 <?php
 //ducktyping with dynamic NewsletterSubscriptionsController, store method does not have a concrete type of param
 
+interface Newsletter
+{
+    public function subscribe($email);
+}
 
-
-class CampaignMonitor
+class CampaignMonitor implements Newsletter
 {
     public function subscribe($email)
     {
@@ -11,7 +14,7 @@ class CampaignMonitor
     }
 }
 
-class Drip
+class Drip implements Newsletter
 {
     public function subscribe($email)
     {
@@ -20,7 +23,7 @@ class Drip
 }
 class NewsletterSubscriptionsController
 {
-    public function store( $newsletter)
+    public function store(Newsletter $newsletter)
     {
         $email = 'jhon@doe.com';
         $newsletter->subscribe($email);
@@ -28,4 +31,4 @@ class NewsletterSubscriptionsController
 }
 
 $controller = new NewsletterSubscriptionsController();
-$controller-> store(new Drip());
+$controller-> store(new CampaignMonitor());
